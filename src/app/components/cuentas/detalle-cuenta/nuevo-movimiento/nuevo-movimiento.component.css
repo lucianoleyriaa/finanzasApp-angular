@@ -1,0 +1,126 @@
+.opciones-container {
+  /* border: 1px solid black; */
+  background-color: #e7e6e6;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  height: 100%;
+}
+
+.opciones-header {
+  padding: 1rem;
+  background-color: #5643fa;
+  text-align: center;
+  font-size: 2rem;
+  font-family: sans-serif;
+  font-weight: 700;
+  color: white;
+}
+
+.form-control-group {
+  padding: 0.5rem;
+}
+
+.label {
+  font-size: 0.9rem;
+  color: #999;
+  font-weight: 700;
+}
+
+.input,
+select {
+  display: inline-block;
+  width: 100%;
+  padding: 0.2rem;
+  font-weight: 700;
+  color: #999;
+  border-radius: 5px;
+  border: none;
+  border-bottom: 2px solid transparent;
+}
+
+.invalid-input {
+  border-bottom: 2px solid #fb1d09;
+}
+
+.input:focus-visible,
+.select:focus-visible {
+  /* border-bottom: 1.5px solid #999; */
+  outline: none;
+  border-bottom: 2px solid #5643fa;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.importe-group {
+  flex-basis: 40%;
+  margin-right: 10px;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.button {
+  border-radius: 5px;
+  padding: 0.25rem 0.6rem;
+  color: white;
+  font-weight: 500;
+  font-size: 1.2rem;
+  font-family: sans-serif;
+  border: none;
+  margin: 8px;
+}
+
+.button-aceptar {
+  background-color: #55c57a;
+  transition: all 0.3s;
+}
+
+.button-aceptar i {
+  font-size: 1.5rem;
+}
+
+.button-disabled {
+  background-color: #999;
+}
+
+.button-cancelar {
+  background-color: #ff4130;
+  transition: all 0.3s;
+}
+
+.button-cancelar:hover {
+  background-color: #fb1d09;
+  box-shadow: 0 0.8rem 1rem rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+.button-aceptar:hover {
+  background-color: #23bb5d;
+  box-shadow: 0 0.8rem 1rem rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+.button-cancelar i {
+  font-size: 1.5rem;
+}
+
+.error-message {
+  font-family: sans-serif;
+  color: #fb1d09;
+  font-weight: 700;
+  margin: 0;
+  padding-top: 0.5rem;
+  font-size: 0.9rem;
+}
+
+p {
+  margin: 0;
+}

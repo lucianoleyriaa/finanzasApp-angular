@@ -1,0 +1,112 @@
+<div class="nb-container">
+  <div class="form-container">
+    <h2>Crear cuenta</h2>
+    <form [formGroup]="signupForm" (ngSubmit)="onSignup()">
+      <div class="form-control-group">
+        <label for="nombre" class="label">Nombre</label>
+        <input
+          type="text"
+          class="input"
+          formControlName="nombre"
+          [ngClass]="{
+            'invalid-input':
+              !signupForm.get('nombre')?.valid &&
+              signupForm.get('nombre')?.touched
+          }"
+        />
+        <div
+          class="error-message"
+          *ngIf="
+            !signupForm.get('nombre')?.valid &&
+            signupForm.get('nombre')?.touched
+          "
+        >
+          <p>Debes ingresar un nombre!</p>
+        </div>
+      </div>
+      <div class="form-control-group">
+        <label for="apellido" class="label">Apellido</label>
+        <input
+          type="text"
+          class="input"
+          formControlName="apellido"
+          [ngClass]="{
+            'invalid-input':
+              !signupForm.get('apellido')?.valid &&
+              signupForm.get('apellido')?.touched
+          }"
+        />
+        <div
+          class="error-message"
+          *ngIf="
+            !signupForm.get('apellido')?.valid &&
+            signupForm.get('apellido')?.touched
+          "
+        >
+          <p>Debes ingresar un apellido!</p>
+        </div>
+      </div>
+      <div class="form-control-group">
+        <label for="nombre" class="label">Usuario</label>
+        <input
+          type="text"
+          class="input"
+          formControlName="nombreUsuario"
+          [ngClass]="{
+            'invalid-input':
+              !signupForm.get('nombreUsuario')?.valid &&
+              signupForm.get('nombreUsuario')?.touched
+          }"
+        />
+        <div
+          class="error-message"
+          *ngIf="
+            !signupForm.get('nombreUsuario')?.valid &&
+            signupForm.get('nombreUsuario')?.touched
+          "
+        >
+          <p>Debes ingresar un nombre de usuario!</p>
+        </div>
+      </div>
+      <div class="form-control-group">
+        <label for="password" class="label">Contraseña</label>
+        <input
+          type="password"
+          class="input"
+          formControlName="password"
+          [ngClass]="{
+            'invalid-input':
+              !signupForm.get('password')?.valid &&
+              signupForm.get('password')?.touched
+          }"
+        />
+        <div
+          class="error-message"
+          *ngIf="
+            !signupForm.get('password')?.valid &&
+            signupForm.get('password')?.touched
+          "
+        >
+          <p>Debes ingresar una contraseña!</p>
+        </div>
+      </div>
+
+      <div class="button-container">
+        <button
+          class="button button-registrarse"
+          type="submit"
+          [ngClass]="{
+            'button-registrarse': signupForm.valid,
+            'button-disabled': !signupForm.valid
+          }"
+          [disabled]="!signupForm.valid"
+        >
+          Registrarme
+        </button>
+        <button class="button button-ingresar" routerLink="/login">
+          Iniciar sesion
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

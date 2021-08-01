@@ -1,0 +1,78 @@
+<div class="nb-container">
+  <div class="login-container">
+    <h2 class="text-center">Ingresar</h2>
+
+    <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+      <div class="alert alert-danger" *ngIf="error">
+        <p>{{ errorMessage }}</p>
+      </div>
+      <div class="form-control-group">
+        <label for="usuario" class="label">Usuario</label>
+        <input
+          type="text"
+          name="usuario"
+          formControlName="nombreUsuario"
+          autocomplete="off"
+          class="input"
+          [ngClass]="{
+            'invalid-input':
+              !loginForm.get('nombreUsuario')?.valid &&
+              loginForm.get('nombreUsuario')?.touched
+          }"
+        />
+        <div
+          class="error-message"
+          *ngIf="
+            !loginForm.get('nombreUsuario')?.valid &&
+            loginForm.get('nombreUsuario')?.touched
+          "
+        >
+          <p>Debes ingresar un usuario!</p>
+        </div>
+      </div>
+      <div class="form-control-group">
+        <label for="password" class="label">Contraseña</label>
+        <input
+          type="password"
+          name="password"
+          formControlName="password"
+          class="input"
+          [ngClass]="{
+            'invalid-input':
+              !loginForm.get('password')?.valid &&
+              loginForm.get('password')?.touched
+          }"
+        />
+        <div
+          class="error-message"
+          *ngIf="
+            !loginForm.get('password')?.valid &&
+            loginForm.get('password')?.touched
+          "
+        >
+          <p>Debes ingresar una contraseña!</p>
+        </div>
+      </div>
+      <div class="button-container">
+        <button
+          type="submit"
+          class="button"
+          [ngClass]="{
+            'button-ingresar': loginForm.valid,
+            'button-disabled': !loginForm.valid
+          }"
+          [disabled]="!loginForm.valid"
+        >
+          Ingresar
+        </button>
+        <button
+          type="submit"
+          class="button button-registrarse"
+          routerLink="/signup"
+        >
+          Registarme
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

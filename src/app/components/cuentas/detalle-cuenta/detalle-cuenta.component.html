@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="acciones">
+    <button class="button button-ingreso" (click)="addMovement()">
+      <i class="bi bi-plus"></i>Movimiento
+    </button>
+
+    <button class="button button-transferencia">
+      <i class="bi bi-plus"></i>Categoria
+    </button>
+  </div>
+
+  <div>
+    <div class="detalle-container">
+      <div class="detalle-header">
+        <h2>{{ nombreCuenta }}</h2>
+        <p>${{ saldoCuenta }}</p>
+      </div>
+
+      <div class="movimientos">
+        <div class="detalle-movimiento" *ngFor="let mov of movimientos">
+          <div class="movimiento-header">
+            <span>{{ mov.fecha }}</span>
+            <h4>{{ mov.nombre }}</h4>
+            <div class="movimiento-categorias">
+              <p
+                class="banner"
+                [ngClass]="{
+                  'banner-ingreso': mov.id_tipo_mov === 1,
+                  'banner-gasto': mov.id_tipo_mov === 2,
+                  'banner-transferencia': mov.id_tipo_mov === 3
+                }"
+              >
+                {{ mov.tipo_movimiento.nombre }}
+              </p>
+              <p class="banner banner-categoria">{{ mov.categoria.nombre }}</p>
+            </div>
+          </div>
+          <div
+            class="movimiento-monto"
+            [ngClass]="{
+              'movimiento-ingreso': mov.id_tipo_mov === 1,
+              'movimiento-gasto': mov.id_tipo_mov === 2,
+              'movimiento-transferencia': mov.id_tipo_mov == 3
+            }"
+          >
+            ${{ mov.monto }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <router-outlet></router-outlet>
+  </div>
+</div>

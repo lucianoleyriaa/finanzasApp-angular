@@ -1,0 +1,174 @@
+<div class="opciones-container">
+  <div class="opciones-header">
+    <h2>Nuevo Movimiento</h2>
+  </div>
+
+  <form id="form" (ngSubmit)="onSubmit()" [formGroup]="addMovement">
+    <div class="error-message" *ngIf="error.error">
+      {{ error.message }}
+    </div>
+
+    <div class="form-control-group">
+      <label for="nombre" class="label">Nombre</label>
+      <input
+        type="text"
+        class="input"
+        formControlName="nombre"
+        [ngClass]="{
+          'invalid-input':
+            !addMovement.get('nombre')?.valid &&
+            addMovement.get('nombre')?.touched
+        }"
+      />
+      <div
+        class="error-message"
+        *ngIf="
+          !addMovement.get('nombre')?.valid &&
+          addMovement.get('nombre')?.touched
+        "
+      >
+        <p>Debes ingresar un nombre!</p>
+      </div>
+    </div>
+
+    <div class="form-control-group">
+      <label for="tipo_movimiento" class="label">Tipo</label>
+      <select
+        name="tipo_movimiento"
+        class="select"
+        formControlName="id_tipo_mov"
+        [ngClass]="{
+          'invalid-input':
+            !addMovement.get('id_tipo_mov')?.valid &&
+            addMovement.get('id_tipo_mov')?.touched
+        }"
+      >
+        <option disabled selected>--Selecciona--</option>
+        <option value="1">Ingreso</option>
+        <option value="2">Gasto</option>
+        <option value="3">Transferencia</option>
+      </select>
+      <div
+        class="error-message"
+        *ngIf="
+          !addMovement.get('id_tipo_mov')?.valid &&
+          addMovement.get('id_tipo_mov')?.touched
+        "
+      >
+        <p>Debes seleccionar un tipo de movimiento!</p>
+      </div>
+    </div>
+
+    <div *ngIf="addMovement.get('id_tipo_mov')?.value === '3'">
+      <div class="form-control-group">
+        <label for="cuenta_destino" class="label">Cuenta Destino</label>
+        <select
+          name="cuenta_destino"
+          class="select"
+          formControlName="id_cuenta_destino"
+          [ngClass]="{
+            'invalid-input':
+              !addMovement.get('id_cuenta_destino')?.valid &&
+              addMovement.get('id_cuenta_destino')?.touched
+          }"
+        >
+          <option disabled selected value="0" *ngIf="">--Selecciona--</option>
+          <option value="{{ cuenta.id }}" *ngFor="let cuenta of cuentas">
+            {{ cuenta.nombre }}
+          </option>
+        </select>
+        <div
+          class="error-message"
+          *ngIf="
+            !addMovement.get('id_cuenta_destino')?.valid &&
+            addMovement.get('id_cuenta_destino')?.touched
+          "
+        >
+          <p>Debes seleccionar un cuenta destino!</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-control-group flex">
+      <div class="importe-group">
+        <label for="importe" class="label">Importe</label>
+        <input
+          type="text"
+          class="input"
+          formControlName="monto"
+          [ngClass]="{
+            'invalid-input':
+              !addMovement.get('monto')?.valid &&
+              addMovement.get('monto')?.touched
+          }"
+        />
+        <div
+          class="error-message"
+          *ngIf="
+            !addMovement.get('monto')?.valid &&
+            addMovement.get('monto')?.touched
+          "
+        >
+          <p>Debes ingresar un monto!</p>
+        </div>
+      </div>
+
+      <div class="fecha-group">
+        <label for="fecha" class="label">Fecha</label>
+        <input type="date" class="input" formControlName="fecha" />
+      </div>
+    </div>
+
+    <div class="form-control-group">
+      <label for="categoria" class="label">Categoria</label>
+      <select
+        name="categoria"
+        class="select"
+        formControlName="id_categoria"
+        [ngClass]="{
+          'invalid-input':
+            !addMovement.get('id_categoria')?.valid &&
+            addMovement.get('id_categoria')?.touched
+        }"
+      >
+        <option disabled selected value="0">--Selecciona--</option>
+        <option
+          value="{{ categoria?.id }}"
+          *ngFor="let categoria of categorias"
+        >
+          {{ categoria?.nombre }}
+        </option>
+      </select>
+      <div
+        class="error-message"
+        *ngIf="
+          !addMovement.get('id_categoria')?.valid &&
+          addMovement.get('id_categoria')?.touched
+        "
+      >
+        <p>Debes seleccionar una categoria!</p>
+      </div>
+    </div>
+
+    <div class="buttons-container">
+      <button
+        class="button"
+        [ngClass]="{
+          'button-aceptar': addMovement.valid,
+          'button-disabled': !addMovement.valid
+        }"
+        type="submit"
+        [disabled]="!addMovement.valid"
+      >
+        <i class="bi bi-check"></i>
+      </button>
+      <button
+        class="button button-cancelar"
+        type="button"
+        [routerLink]="'../../'"
+      >
+        <i class="bi bi-x"></i>
+      </button>
+    </div>
+  </form>
+</div>
