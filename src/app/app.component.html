@@ -1,3 +1,11 @@
-<div class="nb-container">
+<div *ngIf="loading.status">
+  <div class="loader-backdrop"></div>
+  <div class="loader-block">
+    <div class="spinner-border text-primary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+</div>
+<div class="nb-container bg-light">
   <router-outlet></router-outlet>
 </div>

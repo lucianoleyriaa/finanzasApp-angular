@@ -1,78 +1,31 @@
-<div class="nb-container">
-  <div class="login-container">
-    <h2 class="text-center">Ingresar</h2>
+<div class="login">
 
-    <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
-      <div class="alert alert-danger" *ngIf="error">
-        <p>{{ errorMessage }}</p>
-      </div>
-      <div class="form-control-group">
-        <label for="usuario" class="label">Usuario</label>
-        <input
-          type="text"
-          name="usuario"
-          formControlName="nombreUsuario"
-          autocomplete="off"
-          class="input"
-          [ngClass]="{
-            'invalid-input':
-              !loginForm.get('nombreUsuario')?.valid &&
-              loginForm.get('nombreUsuario')?.touched
-          }"
-        />
-        <div
-          class="error-message"
-          *ngIf="
-            !loginForm.get('nombreUsuario')?.valid &&
-            loginForm.get('nombreUsuario')?.touched
-          "
-        >
-          <p>Debes ingresar un usuario!</p>
+  <div class="col-12 py-5">
+    <div class="row">
+      <form (ngSubmit)="onSubmit()" #loginForm="ngForm" class="m-auto bg-white shadow-sm py-5 px-5 mb-5 bg-white rounded" style="width: 450px">
+
+        <div class="form-group">
+          <label for="username">Usuario</label>
+          <input type="text" name="username" class="form-control" [ngClass]="{'border border-danger': !username.valid && username.touched}" ngModel #username="ngModel" required>
+          <small *ngIf="!username.valid && username.touched" class="text-danger">
+            Ingresa el usuario
+          </small>
         </div>
-      </div>
-      <div class="form-control-group">
-        <label for="password" class="label">Contraseña</label>
-        <input
-          type="password"
-          name="password"
-          formControlName="password"
-          class="input"
-          [ngClass]="{
-            'invalid-input':
-              !loginForm.get('password')?.valid &&
-              loginForm.get('password')?.touched
-          }"
-        />
-        <div
-          class="error-message"
-          *ngIf="
-            !loginForm.get('password')?.valid &&
-            loginForm.get('password')?.touched
-          "
-        >
-          <p>Debes ingresar una contraseña!</p>
+
+        <div class="form-group">
+          <label for="password">Contraseña</label>
+          <input type="password" name="password" class="form-control" [ngClass]="{'border border-danger': !password.valid && password.touched}" ngModel #password="ngModel" required>
+          <small *ngIf="!password.valid && password.touched" class="text-danger">
+            Ingresa una contraseña
+          </small>
         </div>
-      </div>
-      <div class="button-container">
-        <button
-          type="submit"
-          class="button"
-          [ngClass]="{
-            'button-ingresar': loginForm.valid,
-            'button-disabled': !loginForm.valid
-          }"
-          [disabled]="!loginForm.valid"
-        >
-          Ingresar
-        </button>
-        <button
-          type="submit"
-          class="button button-registrarse"
-          routerLink="/signup"
-        >
-          Registarme
-        </button>
-      </div>
-    </form>
+
+        <div class="mt-4">
+          <button class="btn btn-blue text-white font-weight-bold btn-block">Ingresar</button>
+        </div>
+
+      </form>
+    </div>
   </div>
+
 </div>
