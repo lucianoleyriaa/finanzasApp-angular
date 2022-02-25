@@ -1,7 +1,21 @@
-<header class="header">
-  <h1>Tus Finanzas</h1>
-  <div class="user">
-    <p>{{ user }}</p>
-    <button class="btn btn-danger" (click)="onLogout()">Salir</button>
+<header class="bg-white text-black-50 d-flex align-items-center justify-content-between p-2 py-2">
+  <h1 class="_fs22">Tus Finanzas</h1>
+  <div class="user d-flex align-items-center">
+
+    <div class="btn-group" dropdown placement="bottom right">
+        <div class="mr-3" role="button" dropdownToggle>
+          <img src="./assets/img/user.jpeg" class="user-image" alt="User image">
+        </div>
+
+      <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-menu-right"
+          role="menu" aria-labelledby="button-basic">
+        <li role="menuitem"><a class="dropdown-item" href="#">Perfil</a></li>
+        <li role="menuitem"><a class="dropdown-item" href="#">Configuraciones</a></li>
+        <li class="divider dropdown-divider"></li>
+        <li role="menuitem"><a class="dropdown-item" href="#">Salir</a>
+        </li>
+      </ul>
+    </div>
+
   </div>
 </header>
