@@ -1,8 +1,11 @@
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 import { AuthService } from './services/auth.service';
 import { AppRouting } from './app-routing.module';
@@ -18,7 +21,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { DetalleCuentaComponent } from './components/cuentas/detalle-cuenta/detalle-cuenta.component';
-import { NuevoMovimientoComponent } from './components/cuentas/detalle-cuenta/nuevo-movimiento/nuevo-movimiento.component';
+import { NewMovementModal } from './components/modals/new-movement';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,7 @@ import { NuevoMovimientoComponent } from './components/cuentas/detalle-cuenta/nu
     DashboardComponent,
     FooterComponent,
     DetalleCuentaComponent,
-    NuevoMovimientoComponent,
+    NewMovementModal,
   ],
   imports: [
     BrowserModule,
@@ -40,6 +43,9 @@ import { NuevoMovimientoComponent } from './components/cuentas/detalle-cuenta/nu
     HttpClientModule,
     AppRouting,
     FormsModule,
+    ModalModule.forRoot(),
+    BrowserAnimationsModule,
+    BsDropdownModule.forRoot(),
   ],
   providers: [
     AuthService,

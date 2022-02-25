@@ -1,19 +1,8 @@
-.header {
-  height: 100%;
-  background-color: #333;
-  color: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
-  margin-bottom: 1rem;
-}
-
-.user {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  width: 10%;
+.user-image {
+  height: 40px;
+  width: 40px;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 .user p {
