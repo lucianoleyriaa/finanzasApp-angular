@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { LoadingService } from './services/loading.service';
 
 @Component({
   selector: 'app-root',
@@ -6,7 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  constructor() {}
+  subscriptions: Subscription = new Subscription();
+  loading: {[key: string] : boolean | string} = {status: false, message: ''};
 
-  ngOnInit() {}
+  constructor(private loadingService: LoadingService) {}
+
+  ngOnInit() {
+    this.subscriptions.add(this.loadingService.loadingStatusChanged.subscribe(status => {
+      console.log(status);
+      this.loading = status;
+    }))
+  }
 }
