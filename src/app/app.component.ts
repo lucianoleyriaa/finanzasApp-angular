@@ -15,7 +15,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.subscriptions.add(this.loadingService.loadingStatusChanged.subscribe(status => {
-      console.log(status);
       this.loading = status;
     }))
   }
