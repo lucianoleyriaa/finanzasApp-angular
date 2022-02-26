@@ -22,6 +22,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { DetalleCuentaComponent } from './components/cuentas/detalle-cuenta/detalle-cuenta.component';
 import { NewMovementModal } from './components/modals/new-movement';
+import { NewAccountModal } from './components/modals/new-account/new-account';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { NewMovementModal } from './components/modals/new-movement';
     FooterComponent,
     DetalleCuentaComponent,
     NewMovementModal,
+    NewAccountModal,
   ],
   imports: [
     BrowserModule,
