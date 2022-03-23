@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { CuentasService } from 'src/app/services/cuentas.service';
+import { ModalService } from 'src/app/services/modal.service';
+import { MovementService } from 'src/app/services/movementService';
 import { MovimientosService } from 'src/app/services/movimientos.service';
+import { NewMovementModal } from '../../modals/new-movement/new-movement';
 
 import { Movements } from './nuevo-movimiento/movimiento.model';
 
@@ -17,16 +20,17 @@ export class DetalleCuentaComponent implements OnInit {
   nombreCuenta!: string;
 
   constructor(
-    private router: Router,
     private route: ActivatedRoute,
     private cuentaService: CuentasService,
-    private movimientoService: MovimientosService
+    private movimientoService: MovimientosService,
+    private modalService: ModalService,
+    private movementService: MovementService,
   ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe((id) => {
-      this.accountId = id.id;
-      this.cuentaService.getAccountDetail(id.id).subscribe((data) => {
+    this.route.params.subscribe((params) => {
+      this.accountId = params.id;
+      this.cuentaService.getAccountDetail(params.id).subscribe((data) => {
         this.formatearFecha(data.movCuenta[0].movimientos);
         this.movimientos = data.movCuenta[0].movimientos;
         this.saldoCuenta = data.movCuenta[0].saldo;
@@ -45,12 +49,14 @@ export class DetalleCuentaComponent implements OnInit {
         this.movimientos.unshift(movimiento);
       }
     );
+
+    this.movementService.movementAdded.subscribe((movement: Movements) => {
+      this.movimientos.unshift(movement);
+    })
   }
 
-  addMovement() {
-    this.router.navigate([`${this.accountId}`, 'nuevo-movimiento'], {
-      relativeTo: this.route,
-    });
+  addMovement(type: {}) {
+    this.modalService.show(NewMovementModal, {initialState: {movementType: type}});
   }
 
   private formatearFecha(movimientos: [Movements]) {

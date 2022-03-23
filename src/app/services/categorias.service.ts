@@ -9,6 +9,10 @@ export class CategoriasService {
 
   constructor(private http: HttpClient) {}
 
+  getCategories() {
+    return this.http.get<any>(this.baseURL + 'categorias');
+  }
+
   getCategorias(id: number) {
     return this.http.get<any>(`${this.baseURL}categorias/${id}`);
   }

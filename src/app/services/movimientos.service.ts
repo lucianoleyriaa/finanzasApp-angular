@@ -26,4 +26,8 @@ export class MovimientosService {
       movement
     );
   }
+
+  getMovementTypes() {
+    return this.http.get<any>(this.baseURL + 'movementTypes');
+  }
 }

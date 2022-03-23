@@ -21,7 +21,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { DetalleCuentaComponent } from './components/cuentas/detalle-cuenta/detalle-cuenta.component';
-import { NewMovementModal } from './components/modals/new-movement';
+import { NewMovementModal } from './components/modals/new-movement/new-movement';
 import { NewAccountModal } from './components/modals/new-account/new-account';
 
 @NgModule({

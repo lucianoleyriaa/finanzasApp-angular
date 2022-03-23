@@ -14,15 +14,5 @@ export class DashboardComponent implements OnInit {
 
   constructor(private cuentasService: CuentasService, private router: Router) {}
 
-  ngOnInit(): void {
-    this.cuentasService.getAccounts().subscribe(
-      (accounts) => {
-        this.accounts = accounts.cuentas;
-      },
-      (error) => {
-        console.log(error.error.message);
-        this.router.navigateByUrl('/login');
-      }
-    );
-  }
+  ngOnInit(): void {}
 }

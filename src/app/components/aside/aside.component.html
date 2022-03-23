@@ -4,12 +4,8 @@
   </div>
 
   <ul class="accounts-list">
-    <li
-      class="account-item"
-      *ngFor="let cuenta of accounts"
-      routerLink="cuentas/{{ cuenta.id }}/movimientos"
-    >
-      <a class="account-link">{{ cuenta.nombre }}</a>
+    <li class="account-item" *ngFor="let account of accounts" (click)="onShowAccountResume(account.id)">
+      <a class="account-link">{{ account.nombre }}</a>
     </li>
   </ul>
 </div>
