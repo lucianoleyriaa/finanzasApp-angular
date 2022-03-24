@@ -10,7 +10,6 @@ import { LoadingService } from 'src/app/services/loading.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  // loginForm!: FormGroup;
   error: boolean = false;
   errorMessage: string = '';
 

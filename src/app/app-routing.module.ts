@@ -1,25 +1,20 @@
-import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './components/auth/login/login.component';
-import { SignupComponent } from './components/auth/signup/signup.component';
+import { NgModule } from '@angular/core';
+
+import { DetalleCuentaComponent } from './components/cuentas/detalle-cuenta/detalle-cuenta.component';
 import { NuevaCuentaComponent } from './components/cuentas/nueva-cuenta/nueva-cuenta.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { DetalleCuentaComponent } from './components/cuentas/detalle-cuenta/detalle-cuenta.component';
 
 // Rutas
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/login',
+    redirectTo: 'auth',
     pathMatch: 'full',
   },
   {
-    path: 'login',
-    component: LoginComponent,
-  },
-  {
-    path: 'signup',
-    component: SignupComponent,
+    path: 'auth',
+    loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule)
   },
   {
     path: 'dashboard',
