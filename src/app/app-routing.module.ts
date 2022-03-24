@@ -1,11 +1,8 @@
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 
-import { DetalleCuentaComponent } from './components/cuentas/detalle-cuenta/detalle-cuenta.component';
-import { NuevaCuentaComponent } from './components/cuentas/nueva-cuenta/nueva-cuenta.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
-// Rutas
 const routes: Routes = [
   {
     path: '',
@@ -17,17 +14,13 @@ const routes: Routes = [
     loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule)
   },
   {
-    path: 'dashboard',
+    path: 'app',
     component: DashboardComponent,
     children: [
       {
-        path: 'cuentas/:id/movimientos',
-        component: DetalleCuentaComponent,
-        children: [
-          // { path: ':id/nuevo-movimiento', component:  },
-        ],
+        path: 'accounts',
+        loadChildren: () => import('./pages/accounts/accounts.module').then(m => m.AccountsModule)
       },
-      { path: 'nuevo', component: NuevaCuentaComponent },
     ],
   },
 ];

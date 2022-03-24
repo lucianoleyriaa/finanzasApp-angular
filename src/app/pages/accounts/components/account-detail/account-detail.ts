@@ -1,19 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+
+import { MovimientosService } from 'src/app/services/movimientos.service';
+import { MovementService } from 'src/app/services/movementService';
 import { CuentasService } from 'src/app/services/cuentas.service';
 import { ModalService } from 'src/app/services/modal.service';
-import { MovementService } from 'src/app/services/movementService';
-import { MovimientosService } from 'src/app/services/movimientos.service';
-import { NewMovementModal } from '../../modals/new-movement/new-movement';
 
 import { Movements } from './nuevo-movimiento/movimiento.model';
 
+import { NewMovementModal } from '../../../../components/modals/new-movement/new-movement';
+
 @Component({
-  selector: 'app-detalle-cuenta',
-  templateUrl: './detalle-cuenta.component.html',
-  styleUrls: ['./detalle-cuenta.component.css'],
+  selector: 'app-account-detail',
+  templateUrl: './account-detail.html',
+  styleUrls: ['./account-detail.css'],
 })
-export class DetalleCuentaComponent implements OnInit {
+export class AccountDetailComponent implements OnInit {
   accountId!: number;
   movimientos!: [Movements];
   saldoCuenta: number = 0;

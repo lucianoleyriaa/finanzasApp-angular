@@ -1,13 +1,14 @@
-import { AfterViewInit, ChangeDetectorRef, Component, OnChanges, OnInit, SimpleChanges, ViewChild } from "@angular/core";
-import { NgForm } from "@angular/forms";
+import { Component,  OnInit, ViewChild} from "@angular/core";
+import { NgForm } from "@angular/forms"
+
 import { BsModalRef } from "ngx-bootstrap/modal";
+
 import { AccountService } from "src/app/services/accountService";
 import { CategoriasService } from "src/app/services/categorias.service";
 import { CategoryService } from "src/app/services/categoryService";
 import { MovementService } from "src/app/services/movementService";
 
-import { MovimientosService } from "src/app/services/movimientos.service";
-import { Accounts } from "../../cuentas/cuenta.model";
+import { Accounts } from "../../../pages/accounts/components/cuenta.model";
 
 @Component({
   selector: 'app-new-movement',

@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
 import { Observable, Subject } from 'rxjs';
 
-import { Accounts } from '../components/cuentas/cuenta.model';
+import { Accounts } from '../pages/accounts/components/cuenta.model';
 
 interface Acccount {
   nombre: string;

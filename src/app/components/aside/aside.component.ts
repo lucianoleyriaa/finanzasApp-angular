@@ -1,13 +1,13 @@
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 import { CuentasService } from 'src/app/services/cuentas.service';
 import { AccountService } from 'src/app/services/accountService';
 import { ModalService } from 'src/app/services/modal.service';
 
-import { Accounts } from '../cuentas/cuenta.model';
+import { Accounts } from '../../pages/accounts/components/cuenta.model';
 
 import { NewAccountModal } from '../modals/new-account/new-account';
-import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-aside',

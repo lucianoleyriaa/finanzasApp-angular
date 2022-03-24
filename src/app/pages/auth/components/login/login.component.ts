@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.service';
+import { NgForm } from '@angular/forms';
+
 import { LoadingService } from 'src/app/services/loading.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -30,7 +31,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('token', data.user.token);
         this.authService.setUserInfo(data.user);
         this.loginForm.reset();
-        this.router.navigateByUrl('/dashboard');
+        this.router.navigateByUrl('/app');
       },
       (error) => {
         this.error = true;

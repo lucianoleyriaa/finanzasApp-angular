@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+
 import { CuentasService } from 'src/app/services/cuentas.service';
 
 @Component({
-  selector: 'app-nueva-cuenta',
-  templateUrl: './nueva-cuenta.component.html',
-  styleUrls: ['./nueva-cuenta.component.css'],
+  selector: 'app-new-account',
+  templateUrl: './new-account.html',
+  styleUrls: ['./new-account.css'],
 })
-export class NuevaCuentaComponent implements OnInit {
+export class NewAccountComponent implements OnInit {
   constructor(private cuentaService: CuentasService, private router: Router) {}
 
   ngOnInit(): void {}

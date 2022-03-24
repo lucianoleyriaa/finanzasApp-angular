@@ -1,7 +1,9 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+
 import { Subject } from 'rxjs';
-import { Movements } from '../components/cuentas/detalle-cuenta/nuevo-movimiento/movimiento.model';
+
+import { Movements } from '../pages/accounts/components/account-detail/nuevo-movimiento/movimiento.model';
 
 interface Movement {
   nombre: string;
