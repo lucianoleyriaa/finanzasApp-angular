@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { CuentasService } from 'src/app/services/cuentas.service';
+import { AccountApiService } from 'src/app/services/api-services/accountApiService';
 
 @Component({
   selector: 'app-new-account',
@@ -10,7 +10,7 @@ import { CuentasService } from 'src/app/services/cuentas.service';
   styleUrls: ['./new-account.css'],
 })
 export class NewAccountComponent implements OnInit {
-  constructor(private cuentaService: CuentasService, private router: Router) {}
+  constructor(private accountApiService: AccountApiService, private router: Router) {}
 
   ngOnInit(): void {}
 
@@ -18,9 +18,9 @@ export class NewAccountComponent implements OnInit {
     const nombre = form.value.nombre;
     const saldo_inicial = +form.value.saldo_inicial;
 
-    this.cuentaService.createAccount({ nombre, saldo_inicial }).subscribe(
+    this.accountApiService.createAccount({ nombre, saldo_inicial }).subscribe(
       (data) => {
-        this.cuentaService.newAccounts.next(data.nuevaCuenta);
+        this.accountApiService.newAccounts.next(data.nuevaCuenta);
         this.router.navigateByUrl('/cuentas');
       },
       (error) => {

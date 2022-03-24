@@ -2,8 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
-import { LoadingService } from 'src/app/services/loading.service';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthApiService } from 'src/app/services/api-services/AuthApiService';
+import { LoadingService } from 'src/app/services/loadingService';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
 
   @ViewChild('loginForm') loginForm: NgForm;
 
-  constructor(private authService: AuthService, private router: Router, private loadingService: LoadingService) {}
+  constructor(private authApiService: AuthApiService, private router: Router, private loadingService: LoadingService) {}
 
   ngOnInit(): void {}
 
@@ -25,11 +25,11 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.loadingService.setLoading();
-    this.authService.login(this.loginForm.value).subscribe(
+    this.authApiService.login(this.loginForm.value).subscribe(
       (data) => {
         this.loadingService.dismissLoading();
         localStorage.setItem('token', data.user.token);
-        this.authService.setUserInfo(data.user);
+        this.authApiService.setUserInfo(data.user);
         this.loginForm.reset();
         this.router.navigateByUrl('/app');
       },
@@ -41,6 +41,6 @@ export class LoginComponent implements OnInit {
   }
 
   onLogout() {
-    this.authService.logout();
+    this.authApiService.logout();
   }
 }

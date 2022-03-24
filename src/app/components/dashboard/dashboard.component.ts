@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { CuentasService } from 'src/app/services/cuentas.service';
+import { AccountApiService } from 'src/app/services/api-services/accountApiService';
 
 import { Accounts } from '../../pages/accounts/components/cuenta.model';
 
@@ -13,7 +13,7 @@ import { Accounts } from '../../pages/accounts/components/cuenta.model';
 export class DashboardComponent implements OnInit {
   accounts!: [Accounts];
 
-  constructor(private cuentasService: CuentasService, private router: Router) {}
+  constructor(private accountApiService: AccountApiService, private router: Router) {}
 
   ngOnInit(): void {}
 }

@@ -1,7 +1,9 @@
 import { Injectable, OnInit } from "@angular/core";
+
 import { Subject } from "rxjs";
-import { LoadingService } from "./loading.service";
-import { MovimientosService } from "./movimientos.service";
+
+import { MovementApiService } from "../movementApiService";
+import { LoadingService } from "../loadingService";
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +11,7 @@ import { MovimientosService } from "./movimientos.service";
 export class MovementService implements OnInit {
   movementAdded: Subject<{}> = new Subject();
 
-  constructor(private movementApiService: MovimientosService, private loadingService: LoadingService) {}
+  constructor(private movementApiService: MovementApiService, private loadingService: LoadingService) {}
 
   ngOnInit(): void {
 

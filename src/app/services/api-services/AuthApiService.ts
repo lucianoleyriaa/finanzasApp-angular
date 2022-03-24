@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+
+import { Observable } from 'rxjs';
 
 interface UserData {
   nombreUsuario: string;
@@ -25,7 +26,7 @@ interface User {
 @Injectable({
   providedIn: 'root',
 })
-export class AuthService {
+export class AuthApiService {
   baseURL: string = 'http://localhost:3000/finanzas/api';
   loggedInUser!: {
     id: number;

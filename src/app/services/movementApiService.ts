@@ -16,7 +16,7 @@ interface Movement {
 @Injectable({
   providedIn: 'root',
 })
-export class MovimientosService {
+export class MovementApiService {
   baseURL: string = 'http://localhost:3000/finanzas/api/';
   nuevoMovimiento$: Subject<Movements> = new Subject();
 

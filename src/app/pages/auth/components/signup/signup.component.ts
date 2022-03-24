@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthApiService } from 'src/app/services/api-services/AuthApiService';
 
 @Component({
   selector: 'app-signup',
@@ -11,7 +11,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class SignupComponent implements OnInit {
   signupForm!: FormGroup;
 
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(private router: Router, private authApiService: AuthApiService) {}
 
   ngOnInit(): void {
     this.signupForm = new FormGroup({
@@ -24,7 +24,7 @@ export class SignupComponent implements OnInit {
 
   onSignup() {
     console.log(this.signupForm.value);
-    this.authService.signup(this.signupForm.value).subscribe(
+    this.authApiService.signup(this.signupForm.value).subscribe(
       (data) => {
         this.router.navigateByUrl('/cuentas');
       },

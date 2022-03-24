@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 
 import { Observable, Subject } from 'rxjs';
 
-import { Accounts } from '../pages/accounts/components/cuenta.model';
+import { Accounts } from '../../pages/accounts/components/cuenta.model';
 
 interface Acccount {
   nombre: string;
@@ -13,7 +13,7 @@ interface Acccount {
 @Injectable({
   providedIn: 'root',
 })
-export class CuentasService {
+export class AccountApiService {
   baseURL: string = 'http://localhost:3000/finanzas/api/';
   newAccounts: Subject<Accounts> = new Subject();
 

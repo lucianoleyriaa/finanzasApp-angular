@@ -12,7 +12,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { AuthInterceptorService } from './core/interceptors/auth-interceptor.service';
-import { AuthService } from './services/auth.service';
+import { AuthApiService } from './services/api-services/AuthApiService';
 
 import { NewMovementModal } from './components/modals/new-movement/new-movement';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -45,7 +45,7 @@ import { AppComponent } from './app.component';
 
   ],
   providers: [
-    AuthService,
+    AuthApiService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
