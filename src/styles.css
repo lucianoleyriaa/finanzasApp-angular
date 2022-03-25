@@ -8,6 +8,10 @@ body {
   background-color: #fff;
 }
 
+ul {
+  list-style: none;
+}
+
 /* Loader */
 .loader-block {
   position: absolute;

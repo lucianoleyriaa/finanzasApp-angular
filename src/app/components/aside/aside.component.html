@@ -1,11 +1,16 @@
 <div class="aside _bg-blue">
   <div class="button-container">
-    <button class="btn btn-blue-outline" (click)="onAddAccount()">Agregar Cuenta</button>
+    <button class="btn btn-blue-outline">Agregar Cuenta</button>
   </div>
 
-  <ul class="accounts-list">
-    <li class="account-item" *ngFor="let account of accounts" (click)="onShowAccountResume(account.id)">
-      <a class="account-link">{{ account.nombre }}</a>
+  <ul class="p-3 _fw500">
+    <li class="text-white clickable p-2" routerLink="/app">
+      <span class="mr-3"><i class="bi bi-house-door"></i></span>
+      <span>Dashboard</span>
+    </li>
+    <li class="text-white clickable p-2" routerLink="/app/accounts">
+      <span class="mr-3"><i class="bi bi-wallet"></i></span>
+      <span>Cuentas</span>
     </li>
   </ul>
 </div>
