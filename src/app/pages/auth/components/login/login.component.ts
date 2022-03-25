@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.service';
-import { LoadingService } from 'src/app/services/loading.service';
+import { NgForm } from '@angular/forms';
+
+import { AuthApiService } from 'src/app/services/api-services/AuthApiService';
+import { LoadingService } from 'src/app/services/loadingService';
 
 @Component({
   selector: 'app-login',
@@ -10,13 +11,12 @@ import { LoadingService } from 'src/app/services/loading.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  // loginForm!: FormGroup;
   error: boolean = false;
   errorMessage: string = '';
 
   @ViewChild('loginForm') loginForm: NgForm;
 
-  constructor(private authService: AuthService, private router: Router, private loadingService: LoadingService) {}
+  constructor(private authApiService: AuthApiService, private router: Router, private loadingService: LoadingService) {}
 
   ngOnInit(): void {}
 
@@ -25,13 +25,13 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.loadingService.setLoading();
-    this.authService.login(this.loginForm.value).subscribe(
+    this.authApiService.login(this.loginForm.value).subscribe(
       (data) => {
         this.loadingService.dismissLoading();
         localStorage.setItem('token', data.user.token);
-        this.authService.setUserInfo(data.user);
+        this.authApiService.setUserInfo(data.user);
         this.loginForm.reset();
-        this.router.navigateByUrl('/dashboard');
+        this.router.navigateByUrl('/app');
       },
       (error) => {
         this.error = true;
@@ -41,6 +41,6 @@ export class LoginComponent implements OnInit {
   }
 
   onLogout() {
-    this.authService.logout();
+    this.authApiService.logout();
   }
 }

@@ -1,38 +1,26 @@
-import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './components/auth/login/login.component';
-import { SignupComponent } from './components/auth/signup/signup.component';
-import { NuevaCuentaComponent } from './components/cuentas/nueva-cuenta/nueva-cuenta.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { DetalleCuentaComponent } from './components/cuentas/detalle-cuenta/detalle-cuenta.component';
+import { NgModule } from '@angular/core';
 
-// Rutas
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/login',
+    redirectTo: 'auth',
     pathMatch: 'full',
   },
   {
-    path: 'login',
-    component: LoginComponent,
+    path: 'auth',
+    loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule)
   },
   {
-    path: 'signup',
-    component: SignupComponent,
-  },
-  {
-    path: 'dashboard',
+    path: 'app',
     component: DashboardComponent,
     children: [
       {
-        path: 'cuentas/:id/movimientos',
-        component: DetalleCuentaComponent,
-        children: [
-          // { path: ':id/nuevo-movimiento', component:  },
-        ],
+        path: 'accounts',
+        loadChildren: () => import('./pages/accounts/accounts.module').then(m => m.AccountsModule)
       },
-      { path: 'nuevo', component: NuevaCuentaComponent },
     ],
   },
 ];

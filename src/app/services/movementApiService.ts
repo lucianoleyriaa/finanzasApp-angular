@@ -1,7 +1,9 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+
 import { Subject } from 'rxjs';
-import { Movements } from '../components/cuentas/detalle-cuenta/nuevo-movimiento/movimiento.model';
+
+import { Movements } from '../../models/movimiento.model';
 
 interface Movement {
   nombre: string;
@@ -14,7 +16,7 @@ interface Movement {
 @Injectable({
   providedIn: 'root',
 })
-export class MovimientosService {
+export class MovementApiService {
   baseURL: string = 'http://localhost:3000/finanzas/api/';
   nuevoMovimiento$: Subject<Movements> = new Subject();
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { LoadingService } from './services/loading.service';
+import { LoadingService } from './services/loadingService';
 
 @Component({
   selector: 'app-root',

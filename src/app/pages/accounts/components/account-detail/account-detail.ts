@@ -1,19 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CuentasService } from 'src/app/services/cuentas.service';
-import { ModalService } from 'src/app/services/modal.service';
-import { MovementService } from 'src/app/services/movementService';
-import { MovimientosService } from 'src/app/services/movimientos.service';
-import { NewMovementModal } from '../../modals/new-movement/new-movement';
 
-import { Movements } from './nuevo-movimiento/movimiento.model';
+import { MovementApiService } from 'src/app/services/movementApiService';
+import { MovementService } from 'src/app/services/api-services/movementService';
+import { AccountApiService } from 'src/app/services/api-services/accountApiService';
+import { ModalService } from 'src/app/services/modalService';
+
+import { Movements } from '../../../../../models/movimiento.model';
+
+import { NewMovementModal } from '../../../../components/modals/new-movement/new-movement';
 
 @Component({
-  selector: 'app-detalle-cuenta',
-  templateUrl: './detalle-cuenta.component.html',
-  styleUrls: ['./detalle-cuenta.component.css'],
+  selector: 'app-account-detail',
+  templateUrl: './account-detail.html',
+  styleUrls: ['./account-detail.css'],
 })
-export class DetalleCuentaComponent implements OnInit {
+export class AccountDetailComponent implements OnInit {
   accountId!: number;
   movimientos!: [Movements];
   saldoCuenta: number = 0;
@@ -21,8 +23,8 @@ export class DetalleCuentaComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private cuentaService: CuentasService,
-    private movimientoService: MovimientosService,
+    private accountApiService: AccountApiService,
+    private movementApiService: MovementApiService,
     private modalService: ModalService,
     private movementService: MovementService,
   ) {}
@@ -30,7 +32,7 @@ export class DetalleCuentaComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       this.accountId = params.id;
-      this.cuentaService.getAccountDetail(params.id).subscribe((data) => {
+      this.accountApiService.getAccountDetail(params.id).subscribe((data) => {
         this.formatearFecha(data.movCuenta[0].movimientos);
         this.movimientos = data.movCuenta[0].movimientos;
         this.saldoCuenta = data.movCuenta[0].saldo;
@@ -38,7 +40,7 @@ export class DetalleCuentaComponent implements OnInit {
       });
     });
 
-    this.movimientoService.nuevoMovimiento$.subscribe(
+    this.movementApiService.nuevoMovimiento$.subscribe(
       (movimiento: Movements) => {
         if (movimiento.id_tipo_mov === 1) {
           this.saldoCuenta = this.saldoCuenta + Number(movimiento.monto);

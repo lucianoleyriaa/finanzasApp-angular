@@ -3,9 +3,9 @@ import { BsModalRef } from "ngx-bootstrap/modal";
 import { NgForm } from "@angular/forms";
 
 import { AccountService } from "src/app/services/accountService";
-import { CuentasService } from "src/app/services/cuentas.service";
-import { LoadingService } from "src/app/services/loading.service";
-import { ModalService } from "src/app/services/modal.service";
+import { AccountApiService } from "src/app/services/api-services/accountApiService";
+import { LoadingService } from "src/app/services/loadingService";
+import { ModalService } from "src/app/services/modalService";
 
 import { ErrorModal } from "../error/error";
 
@@ -19,7 +19,7 @@ export class NewAccountModal implements OnInit {
 
   constructor(
     public bsModalRef: BsModalRef,
-    private accountApiService: CuentasService,
+    private accountApiService: AccountApiService,
     private loadingService: LoadingService,
     private accountService: AccountService,
     private modalService: ModalService,

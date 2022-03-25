@@ -1,41 +1,34 @@
-import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { ModalModule } from 'ngx-bootstrap/modal';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { NgModule } from '@angular/core';
 
-import { AuthService } from './services/auth.service';
+import { AuthModule } from './pages/auth/auth.module';
 import { AppRouting } from './app-routing.module';
 
-import { AppComponent } from './app.component';
-import { LoginComponent } from './components/auth/login/login.component';
-import { CuentaComponent } from './components/cuentas/cuenta/cuenta.component';
-import { SignupComponent } from './components/auth/signup/signup.component';
-import { AuthInterceptorService } from './components/auth/auth-interceptor.service';
-import { NuevaCuentaComponent } from './components/cuentas/nueva-cuenta/nueva-cuenta.component';
-import { AsideComponent } from './components/aside/aside.component';
-import { HeaderComponent } from './components/header/header.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { DetalleCuentaComponent } from './components/cuentas/detalle-cuenta/detalle-cuenta.component';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { ModalModule } from 'ngx-bootstrap/modal';
+
+import { AuthInterceptorService } from './core/interceptors/auth-interceptor.service';
+import { AuthApiService } from './services/api-services/AuthApiService';
+
 import { NewMovementModal } from './components/modals/new-movement/new-movement';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NewAccountModal } from './components/modals/new-account/new-account';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { AsideComponent } from './components/aside/aside.component';
+import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    CuentaComponent,
-    SignupComponent,
-    NuevaCuentaComponent,
     AsideComponent,
     HeaderComponent,
     DashboardComponent,
     FooterComponent,
-    DetalleCuentaComponent,
     NewMovementModal,
     NewAccountModal,
   ],
@@ -48,9 +41,11 @@ import { NewAccountModal } from './components/modals/new-account/new-account';
     ModalModule.forRoot(),
     BrowserAnimationsModule,
     BsDropdownModule.forRoot(),
+    AuthModule,
+
   ],
   providers: [
-    AuthService,
+    AuthApiService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,

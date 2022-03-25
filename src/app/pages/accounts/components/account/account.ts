@@ -3,17 +3,18 @@ import { Router } from '@angular/router';
 
 import { AccountApiService } from 'src/app/services/api-services/accountApiService';
 
-import { Accounts } from '../../../models/cuenta.model';
+import { Accounts } from '../../../../../models/cuenta.model';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css'],
+  selector: 'app-account',
+  templateUrl: './account.html',
+  styleUrls: ['./account.css'],
 })
-export class DashboardComponent implements OnInit {
+export class AccountComponent implements OnInit {
   accounts!: [Accounts];
 
   constructor(private accountApiService: AccountApiService, private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 }
