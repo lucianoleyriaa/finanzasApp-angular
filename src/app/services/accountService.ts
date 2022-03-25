@@ -9,6 +9,7 @@ import { Accounts } from "../../models/cuenta.model";
 })
 export class AccountService {
   activeAccountChanged: Subject<Accounts> = new Subject();
+  userAccountsChanged: Subject<Accounts[]> = new Subject();
   accounts: [Accounts];
   activeAccount: Accounts;
 
@@ -28,6 +29,7 @@ export class AccountService {
 
   addAccount(account) {
     this.accounts.push(account);
+    this.userAccountsChanged.next(this.accounts);
   }
 
 }
