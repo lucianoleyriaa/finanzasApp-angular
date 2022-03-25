@@ -1,4 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+  padding: 0;
+  margin: 0;
+}
+
 body {
   background-color: #fff;
 }
@@ -52,6 +57,8 @@ body {
 .btn-blue-outline { background-color: white; color: #4338ca; }
 .btn-blue-outline:hover { background-color: #f8f9fa; color: #4338ca; }
 .btn-plus { border-radius: 50%; }
+
+.color-primary { color: #4338ca; }
 
 .dropdown-menu {
   border-radius: 8px;
