@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 
 import { Subject } from "rxjs";
 
-import { Accounts } from "../pages/accounts/components/cuenta.model";
+import { Accounts } from "../../models/cuenta.model";
 
 @Injectable({
   providedIn: 'root',

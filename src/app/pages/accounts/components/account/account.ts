@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 
 import { AccountApiService } from 'src/app/services/api-services/accountApiService';
 
-import { Accounts } from '../cuenta.model';
+import { Accounts } from '../../../../../models/cuenta.model';
 
 @Component({
   selector: 'app-account',

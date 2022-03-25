@@ -8,7 +8,7 @@ import { CategoryApiService } from "src/app/services/api-services/categoryApiSer
 import { CategoryService } from "src/app/services/categoryService";
 import { MovementService } from "src/app/services/api-services/movementService";
 
-import { Accounts } from "../../../pages/accounts/components/cuenta.model";
+import { Accounts } from "../../../../models/cuenta.model";
 
 @Component({
   selector: 'app-new-movement',

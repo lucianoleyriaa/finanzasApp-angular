@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 
 import { Observable, Subject } from 'rxjs';
 
-import { Accounts } from '../../pages/accounts/components/cuenta.model';
+import { Accounts } from '../../../models/cuenta.model';
 
 interface Acccount {
   nombre: string;

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 
 import { Subject } from 'rxjs';
 
-import { Movements } from '../pages/accounts/components/account-detail/nuevo-movimiento/movimiento.model';
+import { Movements } from '../../models/movimiento.model';
 
 interface Movement {
   nombre: string;

@@ -6,7 +6,7 @@ import { MovementService } from 'src/app/services/api-services/movementService';
 import { AccountApiService } from 'src/app/services/api-services/accountApiService';
 import { ModalService } from 'src/app/services/modalService';
 
-import { Movements } from './nuevo-movimiento/movimiento.model';
+import { Movements } from '../../../../../models/movimiento.model';
 
 import { NewMovementModal } from '../../../../components/modals/new-movement/new-movement';
 
