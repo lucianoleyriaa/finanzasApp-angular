@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { MovementApiService } from 'src/app/services/movementApiService';
-import { MovementService } from 'src/app/services/api-services/movementService';
 import { AccountApiService } from 'src/app/services/api-services/accountApiService';
+import { MovementService } from 'src/app/services/api-services/movementService';
+import { MovementApiService } from 'src/app/services/movementApiService';
+import { AccountService } from 'src/app/services/accountService';
 import { ModalService } from 'src/app/services/modalService';
 
 import { Movements } from '../../../../../models/movimiento.model';
@@ -24,15 +25,20 @@ export class AccountDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private accountApiService: AccountApiService,
+    private accountService: AccountService,
     private movementApiService: MovementApiService,
     private modalService: ModalService,
     private movementService: MovementService,
-  ) {}
+  ) {
+    // @ts-ignore
+    window.AccountDetailComponent = this;
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       this.accountId = params.id;
       this.accountApiService.getAccountDetail(params.id).subscribe((data) => {
+        this.accountService.setActiveAccount(this.accountId);
         this.formatearFecha(data.movCuenta[0].movimientos);
         this.movimientos = data.movCuenta[0].movimientos;
         this.saldoCuenta = data.movCuenta[0].saldo;

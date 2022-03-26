@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Subscription } from 'rxjs';
 
@@ -25,12 +25,17 @@ export class AccountComponent implements OnInit, OnDestroy {
     private accountApiService: AccountApiService,
     private accountService: AccountService,
     private router: Router,
+    private route: ActivatedRoute,
     private modalService: ModalService
-  ) {}
+  ) {
+    // @ts-ignore
+    window.AccountComponent = this;
+  }
 
   ngOnInit(): void {
     this.subscriptions.add(this.accountApiService.getAccounts().subscribe(accounts => {
       this.accounts = accounts.cuentas;
+      this.accountService.setAccounts(this.accounts);
     }));
 
     this.subscriptions.add(this.accountService.userAccountsChanged.subscribe((accounts: Accounts[]) => {
@@ -44,5 +49,9 @@ export class AccountComponent implements OnInit, OnDestroy {
 
   onAddAccount() {
     this.modalService.show(NewAccountModal);
+  }
+
+  onShowAccountDetail(id) {
+    this.router.navigate([id, "account-detail"], { relativeTo: this.route })
   }
 }

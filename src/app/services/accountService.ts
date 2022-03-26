@@ -27,6 +27,11 @@ export class AccountService {
     return this.activeAccount;
   }
 
+  setActiveAccount(id) {
+    this.activeAccount = this.accounts.find(acc => acc.id === +id);
+    this.activeAccountChanged.next(this.activeAccount);
+  }
+
   addAccount(account) {
     this.accounts.push(account);
     this.userAccountsChanged.next(this.accounts);

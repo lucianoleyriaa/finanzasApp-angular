@@ -8,7 +8,7 @@
     </div>
   </div>
   <ul class="list-group list-group-flush">
-    <li class="list-group-item d-flex justify-content-between align-items-center hoverable clickable text-black-50" *ngFor="let account of accounts">
+    <li *ngFor="let account of accounts" class="list-group-item d-flex justify-content-between align-items-center hoverable clickable text-black-50" (click)="onShowAccountDetail(account.id)">
       <div class="d-flex flex-column">
         <span class="color-primary _fw500">{{ account.nombre }}</span>
         <span class="_fs14 _fw500 text-black-50">Ult. movimiento 24/03/2022</span>

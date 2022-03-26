@@ -64,7 +64,6 @@ export class NewMovementModal implements OnInit {
   }
 
   onAddNewMovement() {
-    console.log(this.movementForm.value);
     if (!this.movementForm.valid) return;
 
     const { name, amount, date, category, subCategory } = this.movementForm.value;
