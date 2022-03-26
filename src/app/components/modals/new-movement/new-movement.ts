@@ -19,7 +19,7 @@ export class NewMovementModal implements OnInit {
   @ViewChild('newMovementForm') movementForm: NgForm;
 
   movementType;
-  accounts: [Accounts];
+  accounts: Accounts[];
   activeAccount: Accounts;
   categories = [];
   categoriesToShow = [];
@@ -64,7 +64,6 @@ export class NewMovementModal implements OnInit {
   }
 
   onAddNewMovement() {
-    console.log(this.movementForm.value);
     if (!this.movementForm.valid) return;
 
     const { name, amount, date, category, subCategory } = this.movementForm.value;
