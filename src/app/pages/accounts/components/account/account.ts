@@ -33,10 +33,7 @@ export class AccountComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.subscriptions.add(this.accountApiService.getAccounts().subscribe(accounts => {
-      this.accounts = accounts.cuentas;
-      this.accountService.setAccounts(this.accounts);
-    }));
+    this.accounts = this.accountService.getAccounts();
 
     this.subscriptions.add(this.accountService.userAccountsChanged.subscribe((accounts: Accounts[]) => {
       this.accounts = accounts;

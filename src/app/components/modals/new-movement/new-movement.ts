@@ -19,7 +19,7 @@ export class NewMovementModal implements OnInit {
   @ViewChild('newMovementForm') movementForm: NgForm;
 
   movementType;
-  accounts: [Accounts];
+  accounts: Accounts[];
   activeAccount: Accounts;
   categories = [];
   categoriesToShow = [];

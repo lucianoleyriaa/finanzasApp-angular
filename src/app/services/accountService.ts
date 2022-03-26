@@ -10,8 +10,8 @@ import { Accounts } from "../../models/cuenta.model";
 export class AccountService {
   activeAccountChanged: Subject<Accounts> = new Subject();
   userAccountsChanged: Subject<Accounts[]> = new Subject();
-  accounts: [Accounts];
-  activeAccount: Accounts;
+  private accounts: Accounts[];
+  private activeAccount: Accounts;
 
   constructor() {}
 
@@ -21,6 +21,7 @@ export class AccountService {
 
   setAccounts(accounts) {
     this.accounts = accounts;
+    this.userAccountsChanged.next(this.accounts);
   }
 
   getActiveAccount() {

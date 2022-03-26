@@ -38,6 +38,10 @@ export class AuthApiService {
 
   constructor(private Http: HttpClient) {}
 
+  getMe(): Observable<any> {
+    return this.Http.get<any>(`${this.baseURL}/auth/me`);
+  }
+
   login(userData: UserData): Observable<any> {
     return this.Http.post<any>(`${this.baseURL}/auth/login`, userData);
   }
