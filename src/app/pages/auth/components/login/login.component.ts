@@ -18,7 +18,13 @@ export class LoginComponent implements OnInit {
 
   constructor(private authApiService: AuthApiService, private router: Router, private loadingService: LoadingService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    const token = localStorage.getItem('token');
+
+    if (token) {
+      this.router.navigate(['/app']);
+    }
+  }
 
   onSubmit() {
     if (!this.loginForm.valid) {
