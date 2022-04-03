@@ -1,0 +1,41 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h5>Nueva cuenta</h5>
+    <button type="button" class="close" (click)="bsModalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <form (ngSubmit)="onSubmit()" #newAccountForm="ngForm">
+      <div class="form-group">
+        <label for="name">Nombre</label>
+        <input type="text" class="form-control" [ngClass]="{'border-danger': !accountName.valid && accountName.touched}" name="name" ngModel #accountName="ngModel" required>
+        <small *ngIf="!accountName.valid && accountName.touched" class="text-danger pl-1">Ingresa un nombre</small>
+      </div>
+
+      <div class="form-group">
+        <label for="amount">Saldo inicial</label>
+        <input type="number" class="form-control" [ngClass]="{'border-danger': !amount.valid && amount.touched}" name="amount" ngModel #amount="ngModel" required>
+        <small *ngIf="!amount.valid && amount.touched" class="text-danger pl-1">Ingresa un monto inicial</small>
+      </div>
+
+      <div class="form-group">
+        <label for="type">Tipo</label>
+        <select name="type" class="form-control" [ngClass]="{'border-danger': !type.valid && type.touched}" ngModel #type="ngModel" required>
+          <option value="" selected [disabled]="true">Seleccionar</option>
+          <option value="ahorro">Ahorro</option>
+          <option value="billetera">Billetera</option>
+          <option value="cuentaCorriente">Cuenta Corriente</option>
+          <option value="ocio">Ocio</option>
+        </select>
+        <small *ngIf="!type.valid && type.touched" class="text-danger pl-1">Selecciona un tipo</small>
+      </div>
+
+      <div class="d-flex justify-content-end">
+        <button class="btn btn-secondary mr-2" (click)="bsModalRef.hide()">Cancelar</button>
+        <button class="btn btn-blue text-white">Agregar</button>
+      </div>
+    </form>
+  </div>
+</div>

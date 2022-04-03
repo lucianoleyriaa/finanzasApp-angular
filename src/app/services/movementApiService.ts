@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 
 import { Subject } from 'rxjs';
 
-import { Movements } from '../../models/movimiento.model';
+import { Movements } from '../models/movement.model';
 
 interface Movement {
   nombre: string;

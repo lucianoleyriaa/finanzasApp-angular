@@ -1,7 +1,7 @@
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 
-import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { DashboardComponent } from './layout/components/dashboard/dashboard.component';
 import { AuthGuard } from './core/guards/auth-guard';
 
 const routes: Routes = [
@@ -12,7 +12,7 @@ const routes: Routes = [
   },
   {
     path: 'auth',
-    loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule)
+    loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule)
   },
   {
     path: 'app',
@@ -21,7 +21,7 @@ const routes: Routes = [
     children: [
       {
         path: 'accounts',
-        loadChildren: () => import('./pages/accounts/accounts.module').then(m => m.AccountsModule)
+        loadChildren: () => import('./modules/accounts/accounts.module').then(m => m.AccountsModule)
       },
     ],
   },
