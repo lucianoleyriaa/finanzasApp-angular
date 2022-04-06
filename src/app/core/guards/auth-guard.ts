@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 
 import { Observable } from "rxjs";
 
-import { AuthApiService } from "src/app/services/api-services/AuthApiService";
+import { AuthApiService } from "src/app/services/api/AuthApiService";
 import { AccountService } from "src/app/services/accountService";
 
 @Injectable({

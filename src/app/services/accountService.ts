@@ -2,7 +2,8 @@ import { Injectable } from "@angular/core";
 
 import { Subject } from "rxjs";
 
-import { Accounts } from "../../models/cuenta.model";
+import { Accounts } from '../models/account.model';
+
 
 @Injectable({
   providedIn: 'root',
