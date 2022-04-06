@@ -1,10 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
-import { AuthModule } from './modules/auth/auth.module';
 import { LayoutModule } from './layout/layout.module';
 import { AppRouting } from './app-routing.module';
 
@@ -22,11 +20,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    FormsModule,
+    HttpClientModule,
     AppRouting,
     ModalModule.forRoot(),
-    AuthModule,
-    RouterModule,
     LayoutModule,
   ],
   providers: [
