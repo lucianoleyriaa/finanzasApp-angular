@@ -9,11 +9,11 @@
     <form (ngSubmit)="onAddNewMovement()" #newMovementForm="ngForm">
       <div class="form-group">
         <label>Nombre</label>
-        <input type="text" class="form-control" [ngClass]="{'border-danger': !name.valid && name.touched}" name="name" ngModel #name="ngModel" required>
+        <input type="text" class="form-control" [ngClass]="{'border-danger': !name.valid && name.touched}" name="name" [(ngModel)]="movement.name" #name="ngModel" required>
         <small *ngIf="!name.valid && name.touched" class="text-danger pl-1">Debes ingresar un nombre</small>
       </div>
 
-      <ng-container *ngIf="movementType.name === 'transfer'">
+      <ng-container *ngIf="movementType.name === 'transfer' || movementType.nombre === 'transfer'">
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="since">Desde</label>
@@ -37,7 +37,7 @@
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="inputAddress">Monto</label>
-          <input type="number" name="amount" class="form-control" [ngClass]="{'border-danger': !amount.valid && amount.touched}" ngModel #amount="ngModel" required>
+          <input type="number" name="amount" class="form-control" [ngClass]="{'border-danger': !amount.valid && amount.touched}" [(ngModel)]="movement.amount" #amount="ngModel" required>
           <small *ngIf="!amount.valid && amount.touched" class="text-danger pl-1">Debes ingresar un monto</small>
         </div>
         <div class="form-group col-md-6">
@@ -50,7 +50,7 @@
       <div class="form-row">
         <div class="form-group col-md-6">
           <label>Categoria</label>
-          <select name="category" class="form-control" [ngClass]="{'border-danger': !category.valid && category.touched && movementType.name !== 'transfer' }" ngModel #category="ngModel" [required]="false">
+          <select name="category" class="form-control" [ngClass]="{'border-danger': !category.valid && category.touched && movementType.name !== 'transfer' }" [(ngModel)]="movement.category.id" #category="ngModel" [required]="false">
             <option value="" disabled selected>Selecciona</option>
             <option *ngFor="let category of categoriesToShow" [value]="category.id">{{ category.nombre | titlecase}}</option>
           </select>

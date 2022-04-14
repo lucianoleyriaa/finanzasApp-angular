@@ -65,6 +65,7 @@ ul {
 .btn-plus { border-radius: 50%; }
 .btn-secondary { background-color: #f8f9fa; border: 1px solid #adb5bd; border-radius: 4px; color: #495057;}
 .btn-secondary:hover, .btn-secondary:focus, .btn-secondary:not(:disabled):not(.disabled):active, .btn-secondary:focus-visible { background-color: #f1f3f5; border: 1px solid #adb5bd; border-radius: 4px; color: #495057;}
+/* .btn-danger:hover { background-color: red; color: white; } */
 
 .color-primary { color: #4338ca; }
 
@@ -75,6 +76,11 @@ ul {
 
 .dropdown-item:hover {
   background-color: #4338ca;
+  color: white;
+}
+
+.dropdown-item:hover.btn-danger {
+  background-color: #e03131;
   color: white;
 }
 

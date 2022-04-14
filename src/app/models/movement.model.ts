@@ -9,3 +9,17 @@ export interface Movements {
   categoria: { nombre: string };
   tipo_movimiento: { nombre: string };
 }
+
+export interface Movement {
+    id: number,
+    date: string,
+    name: string,
+    type: {
+        id: number, name: string
+    },
+    category: {
+        id: number,
+        name: string
+    },
+    amount: number
+}

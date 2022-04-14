@@ -3,11 +3,10 @@ import { ActivatedRoute } from '@angular/router';
 
 import { AccountApiService } from 'src/app/services/api/accountApiService';
 import { MovementService } from 'src/app/services/api/movementService';
-import { MovementApiService } from 'src/app/services/movementApiService';
 import { AccountService } from 'src/app/services/accountService';
 import { ModalService } from 'src/app/services/modalService';
 
-import { Movements } from 'src/app/models/movement.model';
+import { Movement, Movements } from 'src/app/models/movement.model';
 
 import { NewMovementModal } from '../modals/new-movement/new-movement';
 
@@ -18,15 +17,14 @@ import { NewMovementModal } from '../modals/new-movement/new-movement';
 })
 export class AccountDetailComponent implements OnInit {
   accountId!: number;
-  movimientos!: [Movements];
+  movements: Movement[];
   saldoCuenta: number = 0;
-  nombreCuenta!: string;
+  accountName: string;
 
   constructor(
     private route: ActivatedRoute,
     private accountApiService: AccountApiService,
     private accountService: AccountService,
-    private movementApiService: MovementApiService,
     private modalService: ModalService,
     private movementService: MovementService,
   ) {
@@ -38,28 +36,16 @@ export class AccountDetailComponent implements OnInit {
     this.route.params.subscribe((params) => {
       this.accountId = params.id;
       this.accountApiService.getAccountDetail(params.id).subscribe((data) => {
-        this.accountService.setActiveAccount(this.accountId);
-        this.formatearFecha(data.movCuenta[0].movimientos);
-        this.movimientos = data.movCuenta[0].movimientos;
-        this.saldoCuenta = data.movCuenta[0].saldo;
-        this.nombreCuenta = data.movCuenta[0].nombre;
+          this.accountService.setActiveAccount(this.accountId);
+          this.formatearFecha(data.movements)
+          this.movements = data.movements,
+          this.saldoCuenta = data.account_saldo;
+          this.accountName = this.accountService.getActiveAccount().nombre;
       });
     });
 
-    this.movementApiService.nuevoMovimiento$.subscribe(
-      (movimiento: Movements) => {
-        if (movimiento.id_tipo_mov === 1) {
-          this.saldoCuenta = this.saldoCuenta + Number(movimiento.monto);
-        } else {
-          this.saldoCuenta = this.saldoCuenta - Number(movimiento.monto);
-        }
-        console.log(movimiento);
-        this.movimientos.unshift(movimiento);
-      }
-    );
-
-    this.movementService.movementAdded.subscribe((movement: Movements) => {
-      this.movimientos.unshift(movement);
+    this.movementService.movementAdded.subscribe((movement: Movement) => {
+      this.movements.unshift(movement);
     })
   }
 
@@ -67,10 +53,15 @@ export class AccountDetailComponent implements OnInit {
     this.modalService.show(NewMovementModal, {initialState: {movementType: type}});
   }
 
-  private formatearFecha(movimientos: [Movements]) {
+  private formatearFecha(movimientos: Movement[]) {
     movimientos.forEach((el) => {
-      const fecha = new Date(el.fecha);
-      el.fecha = fecha.toLocaleDateString('es');
+      const fecha = new Date(el.date);
+      el.date = fecha.toLocaleDateString('es');
     });
+  }
+
+  onEditMovement(id: number, movType: any): void {
+    const mov = this.movements.find(m => m.id === id);
+    this.modalService.show(NewMovementModal, {initialState: {movementType: movType, mode: 'edit', movement: {...mov}}});
   }
 }

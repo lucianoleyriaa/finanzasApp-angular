@@ -9,6 +9,7 @@ import { CategoryService } from "src/app/services/categoryService";
 import { MovementService } from "src/app/services/api/movementService";
 
 import { Accounts } from "src/app/models/account.model";
+import { Movement } from "src/app/models/movement.model";
 
 @Component({
   selector: 'app-new-movement',
@@ -21,10 +22,19 @@ export class NewMovementModal implements OnInit {
   movementType;
   accounts: Accounts[];
   activeAccount: Accounts;
+  movement: Movement = {
+      name: '',
+      amount: undefined,
+      date: '',
+      id: undefined,
+      category: { id: undefined, name: '' },
+      type: { id: undefined, name: '' }
+  }
   categories = [];
   categoriesToShow = [];
   sameAccount: boolean = false;
   currentDate: Date = new Date(Date.now());
+  mode: string = 'create';
 
   constructor(
     public bsModalRef: BsModalRef,
@@ -41,6 +51,7 @@ export class NewMovementModal implements OnInit {
     this.accounts = this.accountService.getAccounts();
     this.activeAccount = this.accountService.getActiveAccount();
     this.getCategories();
+    // this.movementService.getMovement()
 
     this.movementService.movementAdded.subscribe(() => {
       this.bsModalRef.hide();

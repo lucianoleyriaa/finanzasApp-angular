@@ -1,10 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { Subject } from 'rxjs';
-
-import { Movements } from '../models/movement.model';
-
 interface Movement {
   nombre: string;
   id_tipo_mov: string;
@@ -18,7 +14,6 @@ interface Movement {
 })
 export class MovementApiService {
   baseURL: string = 'http://localhost:3000/finanzas/api/';
-  nuevoMovimiento$: Subject<Movements> = new Subject();
 
   constructor(private http: HttpClient) {}
 
