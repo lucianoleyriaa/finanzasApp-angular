@@ -19,7 +19,7 @@ export class MovementApiService {
 
   createNewMovement(movement: Movement, idCuenta: number) {
     return this.http.post<any>(
-      `${this.baseURL}cuentas/${idCuenta}/movimientos`,
+      `${this.baseURL}cuentas/${idCuenta}/movements/v2`,
       movement
     );
   }

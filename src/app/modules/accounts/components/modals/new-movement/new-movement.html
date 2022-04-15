@@ -42,7 +42,8 @@
         </div>
         <div class="form-group col-md-6">
           <label for="inputAddress2">Fecha</label>
-          <input type="date" name="date" class="form-control" [ngClass]="{'border-danger': !date.valid && date.touched}" [ngModel]="currentDate | date:'yyyy-MM-dd'" ngModel #date="ngModel" required>
+          <!-- <input type="date" name="date" class="form-control" [ngClass]="{'border-danger': !date.valid && date.touched}" [ngModel]="currentDate | date:'yyyy-MM-dd'" ngModel #date="ngModel" required> -->
+          <input type="date" name="date" class="form-control" [ngClass]="{'border-danger': !date.valid && date.touched}" [ngModel]="movement.date | date: 'yyyy-MM-dd'" (change)="onChange($event)" ngModel #date="ngModel" required>
           <small *ngIf="!date.valid && date.touched" class="text-danger pl-1">Debes ingresar una fecha</small>
         </div>
       </div>

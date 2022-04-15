@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
+import * as moment from 'moment';
+
 import { AccountApiService } from 'src/app/services/api/accountApiService';
 import { MovementService } from 'src/app/services/api/movementService';
 import { AccountService } from 'src/app/services/accountService';
@@ -37,8 +39,12 @@ export class AccountDetailComponent implements OnInit {
       this.accountId = params.id;
       this.accountApiService.getAccountDetail(params.id).subscribe((data) => {
           this.accountService.setActiveAccount(this.accountId);
-          this.formatearFecha(data.movements)
-          this.movements = data.movements,
+        //   this.formatearFecha(data.movements)
+          this.movements = data.movements;
+          this.formatMovementsDate(this.movements);
+        //   let date = moment(this.movements[0].date);
+        //   date.format('YYYY-MM-DD').toString();
+        //   console.log(date.format('YYYY-MM-DD').toString());
           this.saldoCuenta = data.account_saldo;
           this.accountName = this.accountService.getActiveAccount().nombre;
       });
@@ -47,6 +53,10 @@ export class AccountDetailComponent implements OnInit {
     this.movementService.movementAdded.subscribe((movement: Movement) => {
       this.movements.unshift(movement);
     })
+
+    moment.locale('es');
+    console.log(Date.now());
+    console.log(moment(Date.now()).locale('es').toString());
   }
 
   addMovement(type: {}) {
@@ -58,6 +68,13 @@ export class AccountDetailComponent implements OnInit {
       const fecha = new Date(el.date);
       el.date = fecha.toLocaleDateString('es');
     });
+  }
+  private formatMovementsDate(movements: Movement[]) {
+    movements.forEach(m => {
+        const date = moment(m.date).format('YYYY-MM-DD hh:mm:ss').toString();
+        console.log(date);
+    });
+
   }
 
   onEditMovement(id: number, movType: any): void {

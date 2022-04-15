@@ -2,6 +2,7 @@ import { Component,  OnInit, ViewChild} from "@angular/core";
 import { NgForm } from "@angular/forms"
 
 import { BsModalRef } from "ngx-bootstrap/modal";
+import * as moment from "moment";
 
 import { AccountService } from "src/app/services/accountService";
 import { CategoryApiService } from "src/app/services/api/categoryApiService";
@@ -25,7 +26,7 @@ export class NewMovementModal implements OnInit {
   movement: Movement = {
       name: '',
       amount: undefined,
-      date: '',
+      date: moment().format('YYYY-MM-DD'),
       id: undefined,
       category: { id: undefined, name: '' },
       type: { id: undefined, name: '' }
@@ -80,12 +81,12 @@ export class NewMovementModal implements OnInit {
     const { name, amount, date, category, subCategory } = this.movementForm.value;
 
     const movement = {
-      nombre: name,
-      monto: amount,
-      fecha: date,
-      id_categoria: category,
-      id_subcategoria: subCategory,
-      id_tipo_mov: this.movementType.id
+      name: name,
+      amount: amount,
+      date: this.createDatetime(date),
+      category_id: category,
+      subCategory_id: subCategory,
+      id_mov_type: this.movementType.id
     }
 
     if (this.movementType.name === "transfer") {
@@ -100,4 +101,26 @@ export class NewMovementModal implements OnInit {
       return (category.tipo_movimiento.nombre === this.movementType.name);
     })
   }
+
+    onChange(e) {
+        const now = new Date();
+
+        const date = moment(e.target.value);
+        date.hours(now.getHours());
+        date.minutes(now.getMinutes());
+        date.milliseconds(now.getMilliseconds());
+
+        this.movement.date = date.format('YYYY-MM-DD');
+    }
+
+    private createDatetime(date: string) {
+        const now = new Date();
+
+        const datetime = moment(date);
+        datetime.hours(now.getHours());
+        datetime.minutes(now.getMinutes());
+        datetime.milliseconds(now.getMilliseconds());
+
+        return datetime.toDate();
+    }
 }
