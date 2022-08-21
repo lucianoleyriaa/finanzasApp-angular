@@ -57,6 +57,10 @@ export class NewMovementModal implements OnInit {
     this.movementService.movementAdded.subscribe(() => {
       this.bsModalRef.hide();
     });
+
+    this.movementService.movementUpdated.subscribe(() => {
+        this.bsModalRef.hide();
+    });
   }
 
   getCategories() {
@@ -80,17 +84,36 @@ export class NewMovementModal implements OnInit {
 
     const { name, amount, date, category, subCategory } = this.movementForm.value;
 
-    const movement = {
-      name: name,
-      amount: amount,
-      date: this.createDatetime(date),
-      category_id: category,
-      subCategory_id: subCategory,
-      id_mov_type: this.movementType.id
+    // const movement = {
+    //   name: name,
+    //   amount: amount,
+    //   date: this.createDatetime(date),
+    //   category_id: category,
+    //   subCategory_id: subCategory,
+    //   id_mov_type: this.movementType.id
+    // }
+
+    const movement: Movement = {
+        id: this.movement.id,
+        date: date,
+        name: name,
+        type: {
+            id: this.movementType.id,
+            name: this.movementType.name,
+        },
+        category: {
+            id: this.movement.category.id,
+            name: this.movement.category.name
+        },
+        amount: amount,
     }
 
     if (this.movementType.name === "transfer") {
       movement["id_cuenta_destino"] = this.movementForm.value.destinationAccount;
+    }
+
+    if (this.mode === 'edit') {
+        return this.movementService.updateMovement(movement, this.movement.id, this.activeAccount.id);
     }
 
     this.movementService.addMovement(movement, this.activeAccount.id);

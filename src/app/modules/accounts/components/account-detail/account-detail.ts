@@ -8,7 +8,7 @@ import { MovementService } from 'src/app/services/api/movementService';
 import { AccountService } from 'src/app/services/accountService';
 import { ModalService } from 'src/app/services/modalService';
 
-import { Movement, Movements } from 'src/app/models/movement.model';
+import { Movement } from 'src/app/models/movement.model';
 
 import { NewMovementModal } from '../modals/new-movement/new-movement';
 
@@ -39,46 +39,47 @@ export class AccountDetailComponent implements OnInit {
       this.accountId = params.id;
       this.accountApiService.getAccountDetail(params.id).subscribe((data) => {
           this.accountService.setActiveAccount(this.accountId);
-        //   this.formatearFecha(data.movements)
           this.movements = data.movements;
           this.formatMovementsDate(this.movements);
-        //   let date = moment(this.movements[0].date);
-        //   date.format('YYYY-MM-DD').toString();
-        //   console.log(date.format('YYYY-MM-DD').toString());
           this.saldoCuenta = data.account_saldo;
           this.accountName = this.accountService.getActiveAccount().nombre;
       });
     });
 
     this.movementService.movementAdded.subscribe((movement: Movement) => {
-      this.movements.unshift(movement);
+        this.movements.unshift(movement);
+    })
+
+    this.movementService.movementUpdated.subscribe((movement: any) => {
+        const i = this.movements.findIndex(el => el.id === movement.id);
+
+        if (i != undefined && i != null) {
+            this.movements[i] = movement;
+        }
     })
 
     moment.locale('es');
-    console.log(Date.now());
-    console.log(moment(Date.now()).locale('es').toString());
   }
 
   addMovement(type: {}) {
-    this.modalService.show(NewMovementModal, {initialState: {movementType: type}});
+      this.modalService.show(NewMovementModal, {initialState: {movementType: type}});
   }
 
-  private formatearFecha(movimientos: Movement[]) {
-    movimientos.forEach((el) => {
-      const fecha = new Date(el.date);
-      el.date = fecha.toLocaleDateString('es');
-    });
-  }
+    private formatearFecha(movimientos: Movement[]) {
+        movimientos.forEach((el) => {
+            const fecha = new Date(el.date);
+            el.date = fecha.toLocaleDateString('es');
+        });
+    }
+
   private formatMovementsDate(movements: Movement[]) {
     movements.forEach(m => {
         const date = moment(m.date).format('YYYY-MM-DD hh:mm:ss').toString();
-        console.log(date);
     });
-
   }
 
   onEditMovement(id: number, movType: any): void {
-    const mov = this.movements.find(m => m.id === id);
+    const mov = this.movements.find(m => m.id === id); // Original
     this.modalService.show(NewMovementModal, {initialState: {movementType: movType, mode: 'edit', movement: {...mov}}});
   }
 }
