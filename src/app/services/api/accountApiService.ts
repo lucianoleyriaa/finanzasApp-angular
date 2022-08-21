@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Observable, Subject } from 'rxjs';
+import { Movement } from 'src/app/models/movement.model';
 
 import { Accounts } from '../../models/account.model';
 
@@ -28,6 +29,6 @@ export class AccountApiService {
   }
 
   getAccountDetail(id: number) {
-    return this.http.get<any>(`${this.baseURL}cuentas/${id}/movimientos`);
+    return this.http.get<{status: string, movements: Movement[], account_saldo: number}>(`${this.baseURL}v2/accounts/${id}/movements/v2`);
   }
 }

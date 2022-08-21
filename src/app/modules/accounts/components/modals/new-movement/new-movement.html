@@ -1,6 +1,7 @@
 <div class="modal-content">
   <div class="modal-header">
-    <h5 class="modal-title" id="exampleModalLabel">Nuevo Movimiento</h5>
+    <h5 *ngIf="mode === 'create'" class="modal-title" id="exampleModalLabel">Nuevo Movimiento</h5>
+    <h5 *ngIf="mode === 'edit'" class="modal-title" id="exampleModalLabel">Editar Movimiento</h5>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="bsModalRef.hide()">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -9,11 +10,11 @@
     <form (ngSubmit)="onAddNewMovement()" #newMovementForm="ngForm">
       <div class="form-group">
         <label>Nombre</label>
-        <input type="text" class="form-control" [ngClass]="{'border-danger': !name.valid && name.touched}" name="name" ngModel #name="ngModel" required>
+        <input type="text" class="form-control" [ngClass]="{'border-danger': !name.valid && name.touched}" name="name" [(ngModel)]="movement.name" #name="ngModel" required>
         <small *ngIf="!name.valid && name.touched" class="text-danger pl-1">Debes ingresar un nombre</small>
       </div>
 
-      <ng-container *ngIf="movementType.name === 'transfer'">
+      <ng-container *ngIf="movementType.name === 'transfer' || movementType.nombre === 'transfer'">
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="since">Desde</label>
@@ -37,12 +38,13 @@
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="inputAddress">Monto</label>
-          <input type="number" name="amount" class="form-control" [ngClass]="{'border-danger': !amount.valid && amount.touched}" ngModel #amount="ngModel" required>
+          <input type="number" name="amount" class="form-control" [ngClass]="{'border-danger': !amount.valid && amount.touched}" [(ngModel)]="movement.amount" #amount="ngModel" required>
           <small *ngIf="!amount.valid && amount.touched" class="text-danger pl-1">Debes ingresar un monto</small>
         </div>
         <div class="form-group col-md-6">
           <label for="inputAddress2">Fecha</label>
-          <input type="date" name="date" class="form-control" [ngClass]="{'border-danger': !date.valid && date.touched}" [ngModel]="currentDate | date:'yyyy-MM-dd'" ngModel #date="ngModel" required>
+          <!-- <input type="date" name="date" class="form-control" [ngClass]="{'border-danger': !date.valid && date.touched}" [ngModel]="currentDate | date:'yyyy-MM-dd'" ngModel #date="ngModel" required> -->
+          <input type="date" name="date" class="form-control" [ngClass]="{'border-danger': !date.valid && date.touched}" [ngModel]="movement.date | date: 'yyyy-MM-dd'" (change)="onChange($event)" ngModel #date="ngModel" required>
           <small *ngIf="!date.valid && date.touched" class="text-danger pl-1">Debes ingresar una fecha</small>
         </div>
       </div>
@@ -50,7 +52,7 @@
       <div class="form-row">
         <div class="form-group col-md-6">
           <label>Categoria</label>
-          <select name="category" class="form-control" [ngClass]="{'border-danger': !category.valid && category.touched && movementType.name !== 'transfer' }" ngModel #category="ngModel" [required]="false">
+          <select name="category" class="form-control" [ngClass]="{'border-danger': !category.valid && category.touched && movementType.name !== 'transfer' }" [(ngModel)]="movement.category.id" #category="ngModel" [required]="false">
             <option value="" disabled selected>Selecciona</option>
             <option *ngFor="let category of categoriesToShow" [value]="category.id">{{ category.nombre | titlecase}}</option>
           </select>
